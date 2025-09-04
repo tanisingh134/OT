@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operation Scheduler - User</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <h1>User Portal</h1>
+      <nav class="breadcrumbs"><a href="index.html">Home</a> / User</nav>
+    </div>
+    <div class="header-right">
+      <button id="logoutBtn" class="btn">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>View Doctors</h2>
+      <table class="table" id="doctorsList">
+        <thead>
+          <tr><th>Name</th><th>Speciality</th><th>Email</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>View Surgical Information</h2>
+      <div class="filters">
+        <label>Day: <input id="userDate" type="date" /></label>
+        <button id="userPrev" class="btn">Prev</button>
+        <button id="userNext" class="btn">Next</button>
+      </div>
+      <table class="table" id="userSchedules">
+        <thead>
+          <tr>
+            <th>Date/Time</th><th>OT</th><th>Doctor</th><th>Status</th><th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="app-footer">&copy; <span id="year"></span> Operation Scheduler</footer>
+
+  <script type="module" src="assets/js/log-hooks.js"></script>
+  <script type="module" src="assets/js/user.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+

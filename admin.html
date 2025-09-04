@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operation Scheduler - Admin</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <h1>Admin Dashboard</h1>
+      <nav class="breadcrumbs"><a href="index.html">Home</a> / Admin</nav>
+    </div>
+    <div class="header-right">
+      <button id="logoutBtn" class="btn">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="tabs">
+      <button class="tab active" data-tab="doctors">Doctors</button>
+      <button class="tab" data-tab="patients">Patients</button>
+      <button class="tab" data-tab="schedules">Schedules</button>
+      <button class="tab" data-tab="reports">Reports</button>
+      <button class="tab" data-tab="analytics">Analytics</button>
+    </section>
+
+    <section id="panel-doctors" class="panel active">
+      <div class="panel-header">
+        <h2>Manage Doctor Details</h2>
+        <form id="doctorForm" class="inline-form">
+          <input id="docName" placeholder="Doctor Name" required />
+          <input id="docSpeciality" placeholder="Speciality" required />
+          <input id="docEmail" type="email" placeholder="Email" required />
+          <button type="submit" class="btn primary">Add/Update</button>
+        </form>
+      </div>
+      <table class="table" id="doctorsTable">
+        <thead>
+          <tr><th>Name</th><th>Speciality</th><th>Email</th><th>Actions</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="panel-patients" class="panel">
+      <div class="panel-header">
+        <h2>Manage Patient Details</h2>
+        <form id="patientForm" class="inline-form">
+          <input id="patName" placeholder="Patient Name" required />
+          <input id="patId" placeholder="Patient ID" required />
+          <input id="patContact" placeholder="Contact" required />
+          <button type="submit" class="btn primary">Add/Update</button>
+        </form>
+      </div>
+      <table class="table" id="patientsTable">
+        <thead>
+          <tr><th>Name</th><th>Patient ID</th><th>Contact</th><th>Actions</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="panel-schedules" class="panel">
+      <div class="panel-header">
+        <h2>Manage Surgery Schedules</h2>
+        <form id="scheduleForm" class="grid-form">
+          <input id="schPatientId" placeholder="Patient ID" required />
+          <input id="schDoctorId" placeholder="Doctor Email" required />
+          <input id="schOTId" placeholder="OT ID" required />
+          <input id="schDate" type="datetime-local" required />
+          <input id="schAnesthesia" placeholder="Anesthesia Type" required />
+          <input id="schAnesthesiologist" placeholder="Anesthesiologist Name" required />
+          <input id="schAssistants" placeholder="Assistant Surgeon (optional)" />
+          <input id="schORNurses" placeholder="OR Nurses (comma-separated)" />
+          <select id="schStatus">
+            <option value="planned">Planned</option>
+            <option value="postponed">Postponed</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="completed">Completed</option>
+            <option value="emergency">Emergency</option>
+          </select>
+          <textarea id="schRemarks" placeholder="Remarks"></textarea>
+          <input id="schUniqueNeeds" placeholder="Unique drugs/instruments/materials" />
+          <button type="submit" class="btn primary">Add/Update</button>
+        </form>
+
+        <div class="filters">
+          <label>View Day: <input id="filterDate" type="date" /></label>
+          <button id="viewPrev" class="btn">Prev Day</button>
+          <button id="viewNext" class="btn">Next Day</button>
+        </div>
+      </div>
+
+      <table class="table" id="schedulesTable">
+        <thead>
+          <tr>
+            <th>Date/Time</th><th>OT</th><th>Patient</th><th>Doctor</th><th>Status</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="panel-reports" class="panel">
+      <h2>Attach Surgical Reports</h2>
+      <form id="reportForm" class="inline-form">
+        <input id="repScheduleId" placeholder="Schedule ID" required />
+        <input id="repFile" type="file" accept="application/pdf,image/*" required />
+        <button type="submit" class="btn">Upload</button>
+      </form>
+      <ul id="reportsList" class="list"></ul>
+    </section>
+
+    <section id="panel-analytics" class="panel">
+      <h2>OT Activity & Efficiency</h2>
+      <div id="analyticsSummary" class="card"></div>
+      <div id="materialsNeeds" class="card"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">&copy; <span id="year"></span> Operation Scheduler</footer>
+
+  <script type="module" src="assets/js/log-hooks.js"></script>
+  <script type="module" src="assets/js/admin.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+
